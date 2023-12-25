@@ -39,7 +39,12 @@ Make sure you have Node.js and npm installed on your machine.
     ```bash
     cd electron-chronicle
     ```
-3. Install dependencies:
+
+3. Manually make one file as `notes.db`
+    ```bash
+    type notes.db
+    ```
+4. Install dependencies:
     ```bash
     npm install
     ```
