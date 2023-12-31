@@ -40,9 +40,11 @@ Make sure you have Node.js and npm installed on your machine.
     cd electron-chronicle
     ```
 
-3. Manually make one file as `notes.db`
+3. Manually make one file as `notes.db` in `db` folder
     ```bash
-    type notes.db
+    mkdir db
+    cd db
+    copy nul notes.db
     ```
 4. Install dependencies:
     ```bash

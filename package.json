@@ -5,12 +5,29 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "prakalp-varshney",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^22.2.0"
+    "electron": "^22.2.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "asar": true,
+    "appId": "electron-chronicle-1.0.0",
+    "win": {
+      "target": "nsis",
+      "icon": "todo-icon.jpg"
+    },
+    "extraResources": [
+      {
+        "from": "./db",
+        "to": "./db"
+      }
+    ]
   },
   "dependencies": {
     "sqlite3": "^5.1.4"

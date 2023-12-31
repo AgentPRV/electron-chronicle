@@ -1,6 +1,5 @@
 function fetchNotesData(){
   const notesData = window.electronAPI.readNotes();
-  console.log("notes", notesData)
 }
 
 window.electronAPI.renderNotesUI((rows) => {

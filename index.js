@@ -2,6 +2,16 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 var sqlite3 = require("sqlite3").verbose();
 
+// Check if the app is packaged
+const isPackaged = app.isPackaged;
+
+// Get the current application directory
+const appDirectory = isPackaged ? path.dirname(app.getAppPath()) : app.getAppPath();
+
+// Construct the path to the notes.db file
+const dbSource = path.join(appDirectory, 'db', 'notes.db');
+
+
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -13,7 +23,7 @@ const createWindow = () => {
     },
   });
   ipcMain.on("read-notes", (event) => {
-    var db = new sqlite3.Database(__dirname + "/notes.db");
+    var db = new sqlite3.Database(dbSource);
     db.all("SELECT * from note", function(err, rows){
       win.webContents.send('render-notes-ui', rows)
     });
@@ -23,7 +33,7 @@ const createWindow = () => {
 };
 
 const runMigration = () => {
-  var db = new sqlite3.Database(__dirname + "/notes.db");
+  var db = new sqlite3.Database(dbSource);
   db.serialize(() => {
     db.exec(
       "CREATE TABLE IF NOT EXISTS note ( id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT );"
@@ -33,7 +43,7 @@ const runMigration = () => {
 }
 
 ipcMain.on("insert-note", (event, title, description) => {
-  var db = new sqlite3.Database(__dirname + "/notes.db");
+  var db = new sqlite3.Database(dbSource);
   db.serialize(() => {
     db.exec(
       "INSERT into note(title, description) VALUES('" +
@@ -47,7 +57,7 @@ ipcMain.on("insert-note", (event, title, description) => {
 });
 
 ipcMain.on("update-note", (event, id, title, description) => {
-  var db = new sqlite3.Database(__dirname + "/notes.db");
+  var db = new sqlite3.Database(dbSource);
   db.serialize(() => {
     db.exec(
       "UPDATE note SET title='"+title+"', description='"+description+"' where id="+id
@@ -57,7 +67,7 @@ ipcMain.on("update-note", (event, id, title, description) => {
 });
 
 ipcMain.on("delete-note", (event, id) => {
-  var db = new sqlite3.Database(__dirname + "/notes.db");
+  var db = new sqlite3.Database(dbSource);
   db.run("DELETE FROM note WHERE id = ?", id);
   db.close();
 });
