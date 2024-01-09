@@ -1,5 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const { autoUpdater } = require("electron-updater");
+
+autoUpdater.checkForUpdatesAndNotify()
+
 var sqlite3 = require("sqlite3").verbose();
 
 // Check if the app is packaged
