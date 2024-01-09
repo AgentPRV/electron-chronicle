@@ -1,7 +1,7 @@
 {
   "name": "electron-chronicle",
-  "version": "1.0.0",
-  "description": "electron tutorial 1.0",
+  "version": "1.0.4",
+  "description": "electron tutorial",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,7 @@
       {
         "provider": "github",
         "owner": "AgentPRV",
-        "repo": "https://github.com/AgentPRV/electron-chronicle.git"
+        "repo": "electron-chronicle"
       }
     ],
     "appId": "electron-chronicle-1.0.0",
