@@ -17,11 +17,13 @@
   },
   "build": {
     "asar": true,
-    "publish": [{
-      "provider": "github",
-      "owner": "AgentPRV",
-      "repo": "https://github.com/AgentPRV/electron-chronicle.git"
-  }],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "AgentPRV",
+        "repo": "https://github.com/AgentPRV/electron-chronicle.git"
+      }
+    ],
     "appId": "electron-chronicle-1.0.0",
     "win": {
       "target": "nsis",
@@ -35,6 +37,7 @@
     ]
   },
   "dependencies": {
+    "electron-log": "^5.0.3",
     "electron-updater": "^6.1.7",
     "sqlite3": "^5.1.4"
   }
