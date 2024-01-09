@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const { autoUpdater } = require("electron-updater");
+autoUpdater.logger = require("electron-log")
+autoUpdater.logger.transports.file.level = "info"
 
 autoUpdater.checkForUpdatesAndNotify()
 
