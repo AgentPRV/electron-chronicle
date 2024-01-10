@@ -1,6 +1,6 @@
 {
   "name": "electron-chronicle",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "electron tutorial",
   "main": "index.js",
   "scripts": {
