@@ -5,11 +5,36 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "author": "Prakalp Varshney",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^28.2.0"
+    "electron": "^28.2.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "AgentPRV",
+        "repo": "electron-chronicle"
+      }
+    ],
+    "appId": "electron-chronicle-1.0.0",
+    "win": {
+      "target": "nsis"
+    },
+    "extraResources": [
+      {
+        "from": "./db",
+        "to": "./db"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "^6.2.1",
+    "sqlite3": "5.1.6"
   }
 }

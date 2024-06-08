@@ -1,6 +1,10 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  setTitle: (title) => ipcRenderer.send('set-title', title),
-  callAPI: () => ipcRenderer.invoke('call-api')
+  createNotes: (title, description) => ipcRenderer.send('create-notes', title, description),
+  updateNotes: (id, title, description) => ipcRenderer.send('update-notes', id, title, description),
+  fetchNotes: () => ipcRenderer.send('fetch-notes'),
+  readNotesUI: (callback) => ipcRenderer.on('read-notes-ui', (_event, rows) => callback(rows)),
+  deleteNotes: (id) => ipcRenderer.send('delete-notes', id),
+
 })
